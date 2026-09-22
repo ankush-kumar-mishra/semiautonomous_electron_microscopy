@@ -1,0 +1,44 @@
+# Python 3.8 required -- see note on PyPhenom below.
+#
+# Versions below are the set verified working on the Phenom instrument PC
+# (C:\Python38). The hyperspy/exspy/numpy combination is version-sensitive,
+# so prefer installing this file as-is over upgrading individual packages.
+#
+#     py -3.8 -m pip install -r requirements.txt
+
+# --- Core numerics / imaging -------------------------------------------------
+numpy==1.24.4
+opencv-python==4.12.0.88
+matplotlib==3.7.5
+Pillow==10.4.0
+
+# --- EDS spectrum handling ---------------------------------------------------
+# exspy is REQUIRED, not optional: hyperspy 2.x moved the EDS signal classes out
+# of core, so AutoPhenom.writeSpectrum's set_signal_type("EDS_SEM") only
+# resolves (to exspy.signals.eds_sem.EDSSEMSpectrum) when exspy is installed.
+hyperspy==2.2.0
+exspy==0.3.1
+h5py==3.11.0
+
+# --- Notebook runtime --------------------------------------------------------
+ipykernel==6.29.5
+ipython==8.12.3
+tqdm==4.67.1
+ipywidgets==8.1.7   # required by `from tqdm.notebook import tqdm`
+
+# --- NOT INSTALLABLE FROM PyPI ----------------------------------------------
+# PyPhenom (imported as `ppi`) -- the Phenom Programming Interface for the
+# Thermo Fisher Scientific Phenom desktop SEM. Every notebook in this repo
+# needs it to talk to the microscope.
+#
+#   * It is proprietary Thermo Fisher software and is NOT on PyPI.
+#     `pip install PyPhenom` will not get you a working package.
+#   * Obtain the PPI SDK from Thermo Fisher Scientific or your Phenom support
+#     contact; it requires a PPI licence tied to your instrument.
+#   * It installs as a compiled extension, not a site-packages distribution.
+#     On this machine: C:\Python38\DLLs\PyPhenom.pyd  (PyPhenom 1.7.0)
+#   * Because it is a compiled .pyd it is built against one specific CPython
+#     version -- this is why the project is pinned to Python 3.8.
+#
+# Verify it is importable before running any notebook:
+#     py -3.8 -c "import PyPhenom; print(PyPhenom.__version__)"
