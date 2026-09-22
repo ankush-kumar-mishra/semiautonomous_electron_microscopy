@@ -3,9 +3,9 @@
 Automated SEM imaging and EDS spectroscopy on a **Thermo Fisher Scientific Phenom** desktop SEM,
 driven from Python through the Phenom Programming Interface (PyPhenom).
 
-The goal is to remove the operator from the repetitive part of an EDS survey: locate features in a
+The goal is to remove the operator from the repetitive part of an SEM image collection and EDS survey: locate features in a
 NavCam overview, drive the stage to each one, acquire SEM images, and collect EDS spot spectra at
-chosen points — saving images, spectra and metadata into a timestamped project folder as it goes.
+chosen points,  saving images, spectra and metadata into a timestamped project folder as it goes.
 
 > **This code moves real hardware.** It drives the stage, sets high tension and beam spot size, and
 > parks the beam in spot mode. Read a notebook before running it, and check the stage limits and
@@ -56,7 +56,7 @@ Every notebook does `import license` and reads two module-level values from it:
 
 | Name | Value |
 |---|---|
-| `license.PhenomUsername` | your Phenom instrument ID (the `MVE…` string) |
+| `license.PhenomUsername` | your Phenom instrument ID |
 | `license.PhenomPassword` | the matching PPI password |
 
 This file is **not in the repository** and you must create it yourself as `license.py`, anywhere on
